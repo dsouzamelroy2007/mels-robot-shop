@@ -1,0 +1,22 @@
+<div class="product">
+        <div class="product-details">
+          <img [src]="getImageUrl(productDetail)" [alt]="productDetail.name" />
+          <div class="product-info">
+            <div class="name">{{productDetail.name}}</div>
+            <div class="description">{{productDetail.description}}</div>
+            <div class="category">Part Type: {{productDetail.category}}</div>
+          </div>
+        </div>
+        <div class="price">
+          <div 
+          [ngStyle]="{ 'color': productDetail.discount !== 0 ? '#999' : '#000' }"
+          [ngClass]="getDiscountClass(productDetail)" class="bold"
+          >
+            {{productDetail.price.toFixed(2)| currency : 'EUR' : 'symbol'}}
+          </div>
+          <div *ngIf="productDetail.discount !== 0" class="discount bold">
+            {{productDetail.price - (productDetail.price * productDetail.discount / 100) | currency : 'EUR' : 'symbol'}}
+          </div>
+          <button class="cta" (click)="buyProduct(productDetail)">Buy</button>
+        </div>
+</div>

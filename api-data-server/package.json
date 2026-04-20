@@ -1,0 +1,12 @@
+{
+  "name": "api-data-server",
+  "version": "1.0.0",
+  "description": "\"API Data server for robot-shop\"",
+  "license": "ISC",
+  "author": "melroy dsouza",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
