@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
 import { SiteHeaderComponent } from './site-header.component';
@@ -17,6 +18,7 @@ describe('SiteHeaderComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [ SiteHeaderComponent ],
+      imports: [RouterTestingModule],
       providers: [
         { provide: UserService, useValue: userServiceSpy },
         { provide: Router, useValue: routerSpy },

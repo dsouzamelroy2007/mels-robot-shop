@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="header">Your Orders</h1>
+
+  <div class="empty" *ngIf="!loading && orders.length === 0">
+    You have no orders yet
+  </div>
+
+  <div class="orders" *ngIf="orders.length > 0">
+    <div class="order" *ngFor="let order of orders">
+      <div class="order-heading">
+        <div>
+          <div class="order-id">{{ order.id }}</div>
+          <div class="date">{{ order.createdAt | date : "medium" }}</div>
+        </div>
+        <div class="status">{{ order.status }}</div>
+      </div>
+
+      <ul>
+        <li *ngFor="let item of order.items">
+          <span>{{ item.quantity }} x {{ item.name }}</span>
+          <span>{{ item.lineTotal | currency : "USD" }}</span>
+        </li>
+      </ul>
+
+      <div class="shipping">
+        {{ order.shippingAddress.fullName }},
+        {{ order.shippingAddress.street }},
+        {{ order.shippingAddress.city }},
+        {{ order.shippingAddress.postalCode }},
+        {{ order.shippingAddress.country }}
+      </div>
+
+      <div class="total">Total: {{ order.total | currency : "USD" }}</div>
+    </div>
+  </div>
+</div>

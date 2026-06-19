@@ -28,4 +28,63 @@
     </li>
   </ul>
   <div class="total">Total: {{ cartTotal | currency }}</div>
+
+  <form
+    #checkoutForm="ngForm"
+    class="checkout"
+    *ngIf="cartItems.length > 0"
+    (ngSubmit)="checkout()"
+  >
+    <h2>Checkout</h2>
+    <input
+      name="fullName"
+      #fullName="ngModel"
+      required
+      [(ngModel)]="shippingAddress.fullName"
+      placeholder="Full Name"
+      type="text"
+    />
+    <input
+      name="street"
+      #street="ngModel"
+      required
+      [(ngModel)]="shippingAddress.street"
+      placeholder="Street Address"
+      type="text"
+    />
+    <input
+      name="city"
+      #city="ngModel"
+      required
+      [(ngModel)]="shippingAddress.city"
+      placeholder="City"
+      type="text"
+    />
+    <input
+      name="postalCode"
+      #postalCode="ngModel"
+      required
+      [(ngModel)]="shippingAddress.postalCode"
+      placeholder="Postal Code"
+      type="text"
+    />
+    <input
+      name="country"
+      #country="ngModel"
+      required
+      [(ngModel)]="shippingAddress.country"
+      placeholder="Country"
+      type="text"
+    />
+    <button [disabled]="checkoutForm.invalid" type="submit" class="button cta">
+      Place Order
+    </button>
+  </form>
+
+  <div class="checkout-message success" *ngIf="completedOrder">
+    Order {{ completedOrder.id }} has been stored.
+  </div>
+  <div class="checkout-message error" *ngIf="checkoutError">
+    {{ checkoutError }}
+  </div>
 </div>

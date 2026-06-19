@@ -92,3 +92,39 @@
   text-decoration: line-through;
   font-size: 18px;
 }
+
+.checkout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 30px 100px 0;
+  padding-top: 20px;
+  border-top: 2px solid #999;
+}
+
+.checkout h2 {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.checkout input {
+  min-width: 0;
+}
+
+.checkout button {
+  justify-self: end;
+}
+
+.checkout-message {
+  margin: 20px 100px;
+  font-size: 18px;
+  text-align: right;
+}
+
+.checkout-message.success {
+  color: #287a3e;
+}
+
+.checkout-message.error {
+  color: #b00020;
+}

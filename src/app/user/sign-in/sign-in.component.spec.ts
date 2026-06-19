@@ -49,7 +49,7 @@ describe('SignInComponent', () => {
   });
 
   it('should call userService.signIn and navigate on success', () => {
-    const mockUser = { firstName: 'John', lastName: 'Doe', email: 'test@example.com' };
+    const mockUser = { id: 'user_123', firstName: 'John', lastName: 'Doe', email: 'test@example.com' };
     userService.signIn.and.returnValue(of(mockUser));
     component.credentials = { email: 'test@example.com', password: 'password123' };
 

@@ -11,7 +11,10 @@ Mel's Robot Shop is a full-stack web application that allows users to browse a c
 - **Product Catalog** - Browse and search through a curated selection of robot parts
 - **Product Details** - View detailed information, specifications, and pricing for individual products
 - **Shopping Cart** - Add, remove, and manage items in your cart with real-time updates
-- **User Accounts** - Create and manage user profiles and purchase history
+- **User Accounts** - Register, sign in, and use protected storefront routes
+- **Persistent Carts** - Save cart contents per authenticated user
+- **Checkout & Orders** - Store checkout details and view order history
+- **Product API Management** - Query products and use admin-only create/update/delete endpoints
 - **Responsive Design** - Fully functional on desktop, tablet, and mobile devices
 - **API Integration** - Seamless integration with a Node.js backend for data management
 
@@ -72,7 +75,7 @@ cd ..
 1. **Start the backend API server** (in a separate terminal):
 ```bash
 cd api-data-server
-node index.js
+npm start
 ```
 
 2. **Start the Angular development server**:
@@ -106,6 +109,28 @@ Executes unit tests using [Karma](https://karma-runner.github.io) and Jasmine.
 npm run e2e
 ```
 Opens [Cypress](https://www.cypress.io/) for interactive E2E testing. Use `npm run e2e:run` for headless testing.
+
+## 🔐 API Features
+
+The API data server persists data to `api-data-server/data/db.json` and supports:
+
+- `POST /api/register` - create a customer account and return an auth token
+- `POST /api/sign-in` - sign in and return an auth token
+- `GET /api/me` - return the current authenticated user
+- `GET /api/products` - list products with optional `search` and `category` query params
+- `GET /api/categories` - list product categories
+- `GET /api/products/:id` - get one product
+- `POST /api/products` - create a product, admin only
+- `PUT /api/products/:id` - update a product, admin only
+- `DELETE /api/products/:id` - delete a product, admin only
+- `GET /api/cart` - get the authenticated user's cart
+- `POST /api/cart/items` - add a product to the authenticated user's cart
+- `DELETE /api/cart/items/:productId` - remove one quantity from the cart
+- `DELETE /api/cart` - clear the cart
+- `POST /api/checkout` - store checkout details and create an order
+- `GET /api/orders` - list the authenticated user's orders
+
+Payment integration is intentionally not included yet. But the plan is to use stripe or paypal in future
 
 ## 🛠️ Development
 
@@ -158,7 +183,7 @@ Feel free to fork this project and submit pull requests for any improvements or 
 
 ## 📄 License
 
-This project is part of a personal learning exercise from Udemy courses.
+This project is part of a personal learning exercise.
 
 ---
 

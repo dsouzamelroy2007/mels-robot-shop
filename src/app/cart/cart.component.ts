@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IProduct } from '../catalog/product.model';
 import { CartService } from './cart.service';
+import { IOrder, IShippingAddress } from '../user/orders/order.model';
+import { OrderService } from '../user/orders/order.service';
 
 @Component({
   selector: 'bot-cart',
@@ -9,10 +11,20 @@ import { CartService } from './cart.service';
 })
 export class CartComponent {
   private cart: IProduct[] = [];
+  checkoutError = '';
+  completedOrder: IOrder | null = null;
+  shippingAddress: IShippingAddress = {
+    fullName: '',
+    street: '',
+    city: '',
+    postalCode: '',
+    country: '',
+  };
   
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private orderService: OrderService) { }
   
   ngOnInit() {
+    this.cartService.loadCart();
     this.cartService.getCart().subscribe({
       next: (cart) => (this.cart = cart),
     });
@@ -31,6 +43,21 @@ export class CartComponent {
 
   removeFromCart(product: IProduct) {
     this.cartService.remove(product);
+  }
+
+  checkout() {
+    this.checkoutError = '';
+    this.completedOrder = null;
+    this.orderService.checkout(this.shippingAddress).subscribe({
+      next: (order) => {
+        this.completedOrder = order;
+        this.cartService.loadCart();
+      },
+      error: (err) => {
+        this.checkoutError =
+          err?.error?.message || 'Checkout failed. Please try again.';
+      },
+    });
   }
 
   getImageUrl(product: IProduct) {

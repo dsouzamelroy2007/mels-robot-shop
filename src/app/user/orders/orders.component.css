@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  align-self: center;
+}
+
+.empty {
+  align-self: center;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.orders {
+  margin: 0 100px;
+}
+
+.order {
+  border-top: 2px solid #999;
+  padding: 20px 0;
+}
+
+.order-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-id {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.date,
+.shipping {
+  color: #666;
+  margin-top: 6px;
+}
+
+.status {
+  color: #d25ca1;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.total {
+  margin-top: 15px;
+  font-size: 22px;
+  text-align: right;
+}

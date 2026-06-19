@@ -1,0 +1,59 @@
+<div class="container">
+  <form #form="ngForm" class="form" (ngSubmit)="register()">
+    <img class="logo" src="/assets/images/logo.jpg" alt="Mel's Robot Shop" />
+    <div class="sign-in">Register</div>
+    <div class="sub-text">to save carts and checkout</div>
+
+    <input
+      name="firstName"
+      #firstName="ngModel"
+      required
+      [(ngModel)]="user.firstName"
+      placeholder="First Name"
+      type="text"
+    />
+    <em class="error" *ngIf="firstName.invalid && firstName.touched">First name is required</em>
+
+    <input
+      name="lastName"
+      #lastName="ngModel"
+      required
+      [(ngModel)]="user.lastName"
+      placeholder="Last Name"
+      type="text"
+    />
+    <em class="error" *ngIf="lastName.invalid && lastName.touched">Last name is required</em>
+
+    <input
+      name="email"
+      #email="ngModel"
+      required
+      email
+      [(ngModel)]="user.email"
+      placeholder="Email Address"
+      type="email"
+    />
+    <em class="error" *ngIf="email.invalid && email.touched">Valid email is required</em>
+
+    <input
+      name="password"
+      #password="ngModel"
+      required
+      minlength="8"
+      [(ngModel)]="user.password"
+      placeholder="Password"
+      type="password"
+    />
+    <em class="error" *ngIf="password.invalid && password.touched">Password must be at least 8 characters</em>
+
+    <div class="buttons">
+      <button [disabled]="form.invalid" type="submit" class="button cta">
+        Register
+      </button>
+    </div>
+
+    <div class="signInError" *ngIf="registrationError">
+      {{ registrationError }}
+    </div>
+  </form>
+</div>
